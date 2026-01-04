@@ -14,29 +14,23 @@
         .text-turquoise { color: var(--turquoise); }
         .bg-turquoise { background-color: var(--turquoise); }
         
-        /* デザイン装飾 */
+        /* PC・スマホ両方で画像を綺麗に見せる設定 */
+        .photo-card img, .hero-img { 
+            width: 100%; height: 100%; object-fit: cover; 
+            object-position: center 60%; /* 上下の中央より少し下を表示（足元を活かす） */
+        }
+        
         .bg-text { font-size: 20vw; line-height: 0.7; -webkit-text-stroke: 1px rgba(0, 0, 0, 0.05); color: transparent; font-family: 'Anton', sans-serif; position: absolute; z-index: 0; pointer-events: none; text-transform: uppercase; }
         .skew-box { transform: skewX(-10deg); transition: all 0.3s; }
         .skew-fix { transform: skewX(10deg); }
         .hero-gradient { background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.8) 100%); }
         
-        /* 画像切り抜き：顔が出ないよう下（足元・胴体）を優先 */
         .photo-card { overflow: hidden; position: relative; aspect-ratio: 16/9; background-color: #000; border-radius: 2px; }
-        .photo-card img { 
-            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1); 
-            width: 100%; height: 100%; object-fit: cover; 
-            object-position: center 85%; 
-        }
-        .photo-card:hover img { transform: scale(1.05); }
+        .photo-card:hover img { transform: scale(1.05); transition: transform 0.6s; }
         .photo-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,255,204,0.6), transparent); opacity: 0; transition: 0.3s; display: flex; items: flex-end; padding: 1.5rem; }
         .photo-card:hover .photo-overlay { opacity: 1; }
         
-        /* メインビジュアル設定 */
-        .hero-img {
-            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; 
-            object-position: center 70%; opacity: 0.8; z-index: 0;
-        }
-
+        .hero-img { position: absolute; inset: 0; opacity: 0.8; z-index: 0; }
         html { scroll-behavior: smooth; }
     </style>
 </head>
@@ -59,13 +53,13 @@
         </div>
     </nav>
 
-    <header class="relative h-[90vh] flex items-center bg-black overflow-hidden">
-        <img src="https://lh3.google.com/u/0/d/19VMlso2SWOJdqv0RJRPwGOpY8FhGWUQY=s2048?auditContext=thumbnailを追加" class="hero-img" alt="Main">
+    <header class="relative h-[80vh] md:h-[90vh] flex items-center bg-black overflow-hidden">
+        <img src="IMG_4018.jpg" class="hero-img" alt="Main Photo">
         <div class="absolute inset-0 hero-gradient"></div>
         <div class="container mx-auto px-8 relative z-10">
             <div class="max-w-4xl">
                 <p class="text-black font-anton text-xl tracking-[0.5em] mb-6 opacity-60 uppercase">Bunsei Art High School</p>
-                <h2 class="text-7xl md:text-[10rem] font-anton leading-[0.9] text-black italic mb-10 uppercase tracking-tighter">
+                <h2 class="text-6xl md:text-[10rem] font-anton leading-[0.9] text-black italic mb-10 uppercase tracking-tighter">
                     Beyond <br>
                     the <span class="text-turquoise drop-shadow-[5px_5px_0px_#000]">Record.</span>
                 </h2>
@@ -80,57 +74,33 @@
     <section id="records" class="py-24 bg-black text-white relative overflow-hidden">
         <div class="bg-text right-0 bottom-0 opacity-10" style="-webkit-text-stroke: 1px #00FFCC;">Speed</div>
         <div class="container mx-auto px-6 relative z-10">
-            <div class="mb-20">
+            <div class="mb-20 text-center md:text-left">
                 <h3 class="text-4xl md:text-5xl font-anton italic mb-12 border-l-4 border-turquoise pl-6 uppercase tracking-widest">Team Average</h3>
                 <div class="grid md:grid-cols-2 gap-10 text-black">
                     <div class="bg-white p-10 skew-box shadow-[10px_10px_0px_0px_#00FFCC]">
-                        <div class="skew-fix">
+                        <div class="skew-fix text-center">
                             <p class="font-black text-xs tracking-widest mb-4 opacity-60 uppercase">Top 7 Average</p>
-                            <h4 class="text-6xl md:text-8xl font-anton italic leading-none tracking-tighter">14:59.88</h4>
+                            <h4 class="text-5xl md:text-8xl font-anton italic leading-none tracking-tighter">14:59.88</h4>
                         </div>
                     </div>
                     <div class="bg-turquoise p-10 skew-box shadow-[10px_10px_0px_0px_rgba(255,255,255,0.1)]">
-                        <div class="skew-fix">
+                        <div class="skew-fix text-center">
                             <p class="font-black text-xs tracking-widest mb-4 opacity-60 uppercase">Top 5 Average</p>
-                            <h4 class="text-6xl md:text-8xl font-anton italic leading-none tracking-tighter">14:53.22</h4>
+                            <h4 class="text-5xl md:text-8xl font-anton italic leading-none tracking-tighter">14:53.22</h4>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-px bg-white/10 border border-white/10 text-center">
-                <div class="bg-black p-8"><p class="text-turquoise font-anton text-sm mb-2 uppercase">800M</p><p class="text-3xl font-anton italic">1.55.25</p></div>
-                <div class="bg-black p-8 border-l border-white/10"><p class="text-turquoise font-anton text-sm mb-2 uppercase">1500M</p><p class="text-3xl font-anton italic">3.55.97</p></div>
-                <div class="bg-black p-8 border-l border-white/10"><p class="text-turquoise font-anton text-sm mb-2 uppercase">3000M</p><p class="text-3xl font-anton italic">8.20.48</p></div>
-                <div class="bg-white text-black p-10"><p class="text-turquoise font-anton text-sm mb-2 uppercase">5000M Best</p><p class="text-4xl font-anton italic leading-none">14.20.40</p></div>
-                <div class="bg-black p-8 border-l border-white/10"><p class="text-turquoise font-anton text-sm mb-2 uppercase">10000M</p><p class="text-3xl font-anton italic">30.52.24</p></div>
-                <div class="bg-black p-8 border-l border-white/10"><p class="text-turquoise font-anton text-sm mb-2 uppercase">3000M SC</p><p class="text-3xl font-anton italic">9.06.01</p></div>
             </div>
         </div>
     </section>
 
     <section id="gallery" class="py-24 bg-white">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-16">
-                <div>
-                    <h3 class="text-5xl font-anton italic uppercase tracking-tighter">Activity</h3>
-                    <div class="w-20 h-2 bg-turquoise mt-4"></div>
-                </div>
-                <div class="mt-6 md:mt-0 flex items-center space-x-6 text-black">
-                    <a href="https://x.com/Bunsei_Ekiden" target="_blank" class="flex items-center space-x-2 hover:text-turquoise transition group">
-                        <span class="text-[10px] font-black tracking-widest uppercase">X Official</span>
-                        <i class="fa-brands fa-x-twitter text-xl group-hover:scale-110 transition"></i>
-                    </a>
-                    <a href="https://www.instagram.com/bunsei_ekiden_team/" target="_blank" class="flex items-center space-x-2 hover:text-turquoise transition group">
-                        <span class="text-[10px] font-black tracking-widest uppercase">Instagram</span>
-                        <i class="fa-brands fa-instagram text-2xl group-hover:scale-110 transition"></i>
-                    </a>
-                </div>
-            </div>
+            <h3 class="text-5xl font-anton italic uppercase tracking-tighter mb-16 text-center md:text-left">Activity</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="photo-card"><img src="https://lh3.google.com/u/0/d/19VMlso2SWOJdqv0RJRPwGOpY8FhGWUQY=s2048?auditContext=thumbnailを追加" alt="1"><div class="photo-overlay"><span class="font-black text-black italic">Focus</span></div></div>
-                <div class="photo-card"><img src="https://lh3.google.com/u/0/d/19VMlso2SWOJdqv0RJRPwGOpY8FhGWUQY=s2048?auditContext=thumbnailを追加" alt="2"><div class="photo-overlay"><span class="font-black text-black italic">Training</span></div></div>
-                <div class="photo-card"><img src="https://lh3.google.com/u/0/d/19VMlso2SWOJdqv0RJRPwGOpY8FhGWUQY=s2048?auditContext=thumbnailを追加" alt="3"><div class="photo-overlay"><span class="font-black text-black italic">One Team</span></div></div>
+                <div class="photo-card"><img src="IMG_4018.jpg" alt="Photo 1"><div class="photo-overlay"><span class="font-black text-black italic text-xl">Focus</span></div></div>
+                <div class="photo-card"><img src="IMG_4018.jpg" alt="Photo 2"><div class="photo-overlay"><span class="font-black text-black italic text-xl">Training</span></div></div>
+                <div class="photo-card"><img src="IMG_4018.jpg" alt="Photo 3"><div class="photo-overlay"><span class="font-black text-black italic text-xl">One Team</span></div></div>
             </div>
         </div>
     </section>
@@ -139,21 +109,21 @@
         <div class="container mx-auto px-6 max-w-4xl text-center md:text-left">
             <h3 class="text-5xl font-anton italic mb-16 uppercase tracking-widest text-center">Schedule</h3>
             <div class="space-y-4 font-bold italic">
-                <div class="flex items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
-                    <div class="font-anton text-4xl w-32 text-turquoise">01.25</div>
-                    <div class="flex-grow border-l border-black/5 pl-8 text-lg text-left">郡市町対抗駅伝大会</div>
+                <div class="flex flex-col md:flex-row items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
+                    <div class="font-anton text-4xl w-full md:w-32 text-turquoise">01.25</div>
+                    <div class="w-full md:flex-grow border-t md:border-t-0 md:border-l border-black/5 pt-4 md:pt-0 md:pl-8 text-lg">郡市町対抗駅伝大会</div>
                 </div>
-                <div class="flex items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
-                    <div class="font-anton text-4xl w-32 text-turquoise">02.01</div>
-                    <div class="flex-grow border-l border-black/5 pl-8 text-lg text-left">大澤駅伝競走大会</div>
+                <div class="flex flex-col md:flex-row items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
+                    <div class="font-anton text-4xl w-full md:w-32 text-turquoise">02.01</div>
+                    <div class="w-full md:flex-grow border-t md:border-t-0 md:border-l border-black/5 pt-4 md:pt-0 md:pl-8 text-lg">大澤駅伝競走大会</div>
                 </div>
-                <div class="flex items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
-                    <div class="font-anton text-4xl w-32 text-turquoise">02.11</div>
-                    <div class="flex-grow border-l border-black/5 pl-8 text-lg text-left">ヤクルトハーフマラソンリレー</div>
+                <div class="flex flex-col md:flex-row items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
+                    <div class="font-anton text-4xl w-full md:w-32 text-turquoise">02.11</div>
+                    <div class="w-full md:flex-grow border-t md:border-t-0 md:border-l border-black/5 pt-4 md:pt-0 md:pl-8 text-lg">ヤクルトハーフマラソンリレー</div>
                 </div>
-                <div class="flex items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
-                    <div class="font-anton text-4xl w-32 text-turquoise">03.22</div>
-                    <div class="flex-grow border-l border-black/5 pl-8 text-lg text-left">伊那駅伝競走大会</div>
+                <div class="flex flex-col md:flex-row items-center bg-white border border-black/10 p-6 hover:border-turquoise transition-all">
+                    <div class="font-anton text-4xl w-full md:w-32 text-turquoise">03.22</div>
+                    <div class="w-full md:flex-grow border-t md:border-t-0 md:border-l border-black/5 pt-4 md:pt-0 md:pl-8 text-lg">伊那駅伝競走大会</div>
                 </div>
             </div>
         </div>
@@ -165,15 +135,15 @@
             <div class="grid md:grid-cols-3 gap-12 text-center md:text-left">
                 <div>
                     <h4 class="text-xl font-black text-turquoise italic border-b-2 border-turquoise inline-block pb-1 mb-6 uppercase">University</h4>
-                    <p class="text-xs leading-[2.5] font-bold opacity-70">亜細亜大学 / 神奈川大学 / 関東学院大学 / 城西大学 / 上武大学 / 専修大学 / 駿河台大学 / 清和大学 / 東京経済大学 / 拓殖大学 / 中央学院大 / 日本体育大学 / 白鴎大学 / 平成国際大学 / 明治学院大学 / 山梨学院大学</p>
+                    <p class="text-[10px] md:text-xs leading-[2.5] font-bold opacity-70 italic text-left">亜細亜大学 / 神奈川大学 / 関東学院大学 / 城西大学 / 上武大学 / 専修大学 / 駿河台大学 / 清和大学 / 東京経済大学 / 拓殖大学 / 中央学院大 / 日本体育大学 / 白鴎大学 / 平成国際大学 / 明治学院大学 / 山梨学院大学</p>
                 </div>
                 <div>
                     <h4 class="text-xl font-black italic border-b-2 border-black inline-block pb-1 mb-6 uppercase">Vocational</h4>
-                    <p class="text-xs leading-[2.5] font-bold opacity-50">日産自動車専門学校 / マロニエ医療福祉専門学校 / 大原専門学校</p>
+                    <p class="text-[10px] md:text-xs leading-[2.5] font-bold opacity-50 italic text-left">日産自動車専門学校 / マロニエ医療福祉専門学校 / 大原専門学校</p>
                 </div>
                 <div>
                     <h4 class="text-xl font-black italic border-b-2 border-black inline-block pb-1 mb-6 uppercase">Business</h4>
-                    <p class="text-xs leading-[2.5] font-bold opacity-50">JUKI（株） / ヨックモック（株） / 古河電池（株） / SUBARU / 警察官 / 消防士</p>
+                    <p class="text-[10px] md:text-xs leading-[2.5] font-bold opacity-50 italic text-left">JUKI（株） / ヨックモック（株） / 古河電池（株） / SUBARU / 警察官 / 消防士</p>
                 </div>
             </div>
         </div>
@@ -183,34 +153,21 @@
         <div class="container mx-auto px-6 max-w-5xl">
             <div class="flex flex-col md:flex-row gap-16 items-start">
                 <div class="w-full md:w-1/2">
-                    <h3 class="text-6xl font-anton italic mb-8 uppercase leading-tight tracking-tighter">
-                        Join the <br><span class="text-turquoise">Force.</span>
-                    </h3>
+                    <h3 class="text-5xl md:text-6xl font-anton italic mb-8 uppercase leading-tight tracking-tighter">Join the <br><span class="text-turquoise">Force.</span></h3>
                     <p class="text-xl font-black italic mb-8 decoration-turquoise underline decoration-4 underline-offset-8">一秒を削る覚悟があるか。</p>
                     <div class="bg-white/5 p-8 border-l-4 border-turquoise">
-                        <p class="text-[10px] text-turquoise font-black uppercase tracking-widest mb-4">公式コンタクト</p>
-                        <p class="text-xs font-bold opacity-60 mb-6 leading-relaxed">
-                            入部希望、練習見学、中学指導者の方からのご連絡は、Googleフォームにて承っております。
-                        </p>
-                        <p class="text-[10px] text-white/40 uppercase tracking-widest mb-2 italic">Official Mail</p>
-                        <a href="mailto:taguchi@bunsei.ed.jp" class="text-lg font-anton text-turquoise italic underline break-all opacity-80 hover:opacity-100 transition">taguchi@bunsei.ed.jp</a>
+                        <p class="text-[10px] text-turquoise font-black uppercase tracking-widest mb-4 italic">Official Contact</p>
+                        <p class="text-xs font-bold opacity-60 mb-6 leading-relaxed italic">入部希望、練習見学等のお問い合わせはこちらまで。</p>
+                        <a href="mailto:taguchi@bunsei.ed.jp" class="text-lg font-anton text-turquoise italic underline break-all opacity-80 hover:opacity-100 transition tracking-wider">taguchi@bunsei.ed.jp</a>
                     </div>
                 </div>
 
-                <div class="w-full md:w-1/2 bg-white p-8 md:p-12 text-black shadow-[20px_20px_0px_0px_#00FFCC]">
+                <div class="w-full md:w-1/2 bg-white p-8 md:p-12 text-black shadow-[15px_15px_0px_0px_#00FFCC]">
                     <div class="text-center">
                         <i class="fa-solid fa-file-signature text-5xl mb-6 text-black/10"></i>
-                        <h4 class="text-2xl font-black italic mb-4">お問い合わせフォーム</h4>
-                        <p class="text-sm font-bold opacity-60 mb-10 leading-relaxed">
-                            外部の入力画面（Googleフォーム）が開きます。<br>
-                            必要事項をご記入の上、送信してください。
-                        </p>
-                        
-                        <a href="https://forms.gle/645LkPAnfosqGuS89" target="_blank" class="block w-full bg-black text-white font-anton text-2xl py-6 hover:bg-turquoise hover:text-black transition-all shadow-xl uppercase tracking-widest">
-                            Open Form <i class="fa-solid fa-arrow-up-right-from-square ml-2 text-sm"></i>
-                        </a>
-                        
-                        <p class="text-[10px] font-bold mt-6 opacity-40 uppercase tracking-tighter italic">※内容を確認後、担当者より折り返しご連絡いたします。</p>
+                        <h4 class="text-2xl font-black italic mb-4 uppercase">Entry Form</h4>
+                        <p class="text-sm font-bold opacity-60 mb-10 leading-relaxed italic">外部のGoogleフォームが開きます。</p>
+                        <a href="https://forms.gle/645LkPAnfosqGuS89" target="_blank" class="block w-full bg-black text-white font-anton text-2xl py-6 hover:bg-turquoise hover:text-black transition-all shadow-xl uppercase tracking-widest">Open Form</a>
                     </div>
                 </div>
             </div>
